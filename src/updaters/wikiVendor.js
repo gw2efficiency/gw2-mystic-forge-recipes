@@ -14,7 +14,7 @@ async function getVendor(vendorName) {
 
   return {
     name: vendorName,
-    locations: offeredItems[0].printouts['Located in'].map((x) => x.fulltext),
+    locations: await getLocations(vendorName),
     purchase_options: await Promise.all(offeredItems.map(formatOfferedItem))
   }
 }
@@ -23,7 +23,7 @@ async function queryApi (vendorName, offset = 0) {
   const parameters = {
     action: 'ask',
     format: 'json',
-    query: `[[Has vendor::${vendorName}]]|?Located in|?Sells item.Has game id|?Has item quantity|?Has item cost` +
+    query: `[[Has vendor::${vendorName}]]|?Sells item.Has game id|?Has item quantity|?Has item cost` +
         `|limit=500|offset=${offset}`,
   }
 
@@ -90,4 +90,21 @@ async function getIdForName(name) {
 
 async function getCurrencies() {
   return await fetch('https://api.guildwars2.com/v2/currencies?lang=en&ids=all').then(x => x.json())
+}
+
+async function getLocations(vendorName) {
+    const parameters = {
+    action: 'ask',
+    format: 'json',
+    query: `[[Has vendor::${vendorName}]]|?Located in=a|?Located in.Located in=b|limit=1`
+  }
+
+  const url = BASE_API_URL + querystring.stringify(parameters)
+  const response = await fetch(url).then(x => x.json())
+  const results = Object.values(response.query.results)
+
+  console.assert(results[0].printouts.a.length === results[0].printouts.b.length)
+  const zipped = results[0].printouts.a.map((k, i) => [k, results[0].printouts.b[i]])
+
+  return zipped.map((x) => x.map((y) => y.fulltext).filter(Boolean).join(', '))
 }
