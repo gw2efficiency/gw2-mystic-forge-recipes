@@ -17,7 +17,7 @@ async function getVendor(vendorName) {
   return {
     name: vendorName,
     locations: await getLocations(vendorName),
-    purchase_options: await Promise.all(offeredItems.map(formatOfferedItem))
+    purchase_options: (await Promise.all(offeredItems.map(formatOfferedItem))).filter(Boolean)
   }
 }
 
@@ -25,7 +25,7 @@ async function queryApi (vendorName, offset = 0) {
   const parameters = {
     action: 'ask',
     format: 'json',
-    query: `[[Has vendor::${vendorName}]]|?Sells item.Has game id|?Has item quantity|?Has item cost` +
+    query: `[[Has vendor::${vendorName}]]|?Sells item.Has game id|?Has item quantity|?Has item cost|?Has availability` +
         `|limit=500|offset=${offset}`,
   }
 
@@ -43,6 +43,10 @@ async function queryApi (vendorName, offset = 0) {
 }
 
 async function formatOfferedItem (item) {
+  if (item.printouts['Has availability'][0] !== 'Current') {
+    return
+  }
+
   let result = {}
 
   result.type = 'Item'
