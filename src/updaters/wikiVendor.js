@@ -8,6 +8,8 @@ let currencies = {}
 module.exports = getVendor
 
 async function getVendor(vendorName) {
+  console.log(vendorName)
+
   currencies = await getCurrencies()
 
   const offeredItems = await queryApi(vendorName)
@@ -56,7 +58,7 @@ async function formatCost (cost) {
 
   const name = cost['Has item currency'].item[0]
 
-  const currency = currencies.find((x) => x.name === name)
+  const currency = getCurrency(name)
   if (currency) {
     result.type = 'Currency'
     result.id = currency.id
@@ -70,6 +72,13 @@ async function formatCost (cost) {
   return result
 }
 
+function getCurrency(name) {
+  if (name === 'Ascended Shard of Glory') {
+    name = 'Ascended Shards of Glory'
+  }
+  return currencies.find((x) => x.name.toLowerCase() === name.toLowerCase())
+}
+
 async function getIdForName(name) {
   const parameters = {
     action: 'ask',
@@ -81,7 +90,12 @@ async function getIdForName(name) {
   const response = await fetch(url).then(x => x.json())
   const results = Object.values(response.query.results)
 
-  if (response.length > 1) {
+  if (results.length === 0) {
+    console.error(`Found no id for '${name}'. Please fix this manually (look out for 'id: null').`)
+    return null
+  }
+
+  if (results.length > 1) {
     console.warn(`Name '${name}' is ambiguous. Found ids ${results.map((x) => x.printouts['Has game id'][0])}. Using the first one.`)
   }
 
@@ -93,7 +107,7 @@ async function getCurrencies() {
 }
 
 async function getLocations(vendorName) {
-    const parameters = {
+  const parameters = {
     action: 'ask',
     format: 'json',
     query: `[[Has vendor::${vendorName}]]|?Located in=a|?Located in.Located in=b|limit=1`
