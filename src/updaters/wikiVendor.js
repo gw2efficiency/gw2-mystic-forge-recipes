@@ -12,7 +12,7 @@ async function getVendor(vendorName) {
 
   currencies = await getCurrencies()
 
-  const offeredItems = await queryApi(`[[Has vendor::${vendorName}]]|?Sells item.Has game id|?Has item quantity|?Has item cost|?Has availability`)
+  const offeredItems = await queryApi(`[[Has vendor::${vendorName}]]|?Sells item|?Sells item.Has game id|?Has item quantity|?Has item cost|?Has availability`)
 
   return {
     name: vendorName,
@@ -53,6 +53,10 @@ async function formatOfferedItem (item) {
   result.count = item.printouts['Has item quantity'][0]
   result.price = await Promise.all(item.printouts['Has item cost'].map(formatCost))
 
+  if (result.id === undefined || result.count === undefined || result.price === undefined) {
+    console.error(`Item '${item.printouts['Sells item'][0].fulltext}' misses some property:`, result)
+  }
+
   return result
 }
 
@@ -71,6 +75,10 @@ async function formatCost (cost) {
   }
 
   result.count = Number(cost['Has item value'].item[0])
+
+  if (result.type === undefined || result.id === undefined || result.count === undefined) {
+    console.error('Cost misses some property:', result)
+  }
 
   return result
 }
