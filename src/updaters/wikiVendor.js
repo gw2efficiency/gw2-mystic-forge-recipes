@@ -78,11 +78,17 @@ async function formatCost (cost) {
 function getCurrency(name) {
   if (name === 'Ascended Shard of Glory') {
     name = 'Ascended Shards of Glory'
+  } else if (name === 'Laurels') {
+    name = 'Laurel';
   }
   return currencies.find((x) => x.name.toLowerCase() === name.toLowerCase())
 }
 
 async function getIdForName(name) {
+  if (name === 'Ectoplasm') { // instead of 'Glob of Ectoplasm'
+    return 19721
+  }
+
   const results = await queryApi(`[[Has context::Item]][[Has canonical name::${name}]]|?Has game id`)
 
   if (results.length === 0) {
