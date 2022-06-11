@@ -5,10 +5,27 @@ const BASE_API_URL = 'https://wiki.guildwars2.com/api.php?'
 
 let currencies = {}
 
-module.exports = getVendor
+module.exports.getVendorsForItem = getVendorsForItem
+module.exports.getVendor = getVendor
+
+async function getVendorsForItem(nameOrId) {
+  let name = nameOrId
+  if (!Number.isNaN(Number(nameOrId))) {
+    const item = await fetch(`https://api.guildwars2.com/v2/items?lang=en&id=${nameOrId}`).then(x => x.json())
+    name = item.name
+  }
+
+  const vendors = (await queryApi(`[[Sells item::${name}]]|?Has vendor`)).map((vendor) => vendor.printouts['Has vendor'][0].fulltext)
+  if (vendors.length === 0) {
+    console.warn(`Found no id for '${name}'.`)
+  }
+  console.log(`Processing item   ${name}`)
+
+  return await Promise.all(vendors.map(getVendor))
+}
 
 async function getVendor(vendorName) {
-  console.log(vendorName)
+  console.log(`Processing vendor ${vendorName}`)
 
   currencies = await getCurrencies()
 
