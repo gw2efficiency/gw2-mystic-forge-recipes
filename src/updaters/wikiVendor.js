@@ -12,7 +12,7 @@ async function getVendor(vendorName) {
 
   currencies = await getCurrencies()
 
-  const offeredItems = await queryApi(vendorName)
+  const offeredItems = await queryApi(`[[Has vendor::${vendorName}]]|?Sells item.Has game id|?Has item quantity|?Has item cost|?Has availability`)
 
   return {
     name: vendorName,
@@ -21,12 +21,11 @@ async function getVendor(vendorName) {
   }
 }
 
-async function queryApi (vendorName, offset = 0) {
+async function queryApi (query, offset = 0) {
   const parameters = {
     action: 'ask',
     format: 'json',
-    query: `[[Has vendor::${vendorName}]]|?Sells item.Has game id|?Has item quantity|?Has item cost|?Has availability` +
-        `|limit=500|offset=${offset}`,
+    query: query +  `|limit=500|offset=${offset}`,
   }
 
   const url = BASE_API_URL + querystring.stringify(parameters)
@@ -36,7 +35,7 @@ async function queryApi (vendorName, offset = 0) {
   let moreResults = []
 
   if (response['query-continue-offset']) {
-    moreResults = await queryApi(vendorName, response['query-continue-offset'])
+    moreResults = await queryApi(query, response['query-continue-offset'])
   }
 
   return results.concat(moreResults)
@@ -84,15 +83,7 @@ function getCurrency(name) {
 }
 
 async function getIdForName(name) {
-  const parameters = {
-    action: 'ask',
-    format: 'json',
-    query: `[[Has context::Item]][[Has canonical name::${name}]]|?Has game id`
-  }
-
-  const url = BASE_API_URL + querystring.stringify(parameters)
-  const response = await fetch(url).then(x => x.json())
-  const results = Object.values(response.query.results)
+  const results = await queryApi(`[[Has context::Item]][[Has canonical name::${name}]]|?Has game id`)
 
   if (results.length === 0) {
     console.error(`Found no id for '${name}'. Please fix this manually (look out for 'id: null').`)
@@ -111,15 +102,7 @@ async function getCurrencies() {
 }
 
 async function getLocations(vendorName) {
-  const parameters = {
-    action: 'ask',
-    format: 'json',
-    query: `[[Has vendor::${vendorName}]]|?Located in=a|?Located in.Located in=b|limit=1`
-  }
-
-  const url = BASE_API_URL + querystring.stringify(parameters)
-  const response = await fetch(url).then(x => x.json())
-  const results = Object.values(response.query.results)
+  const results = await queryApi(`[[Has vendor::${vendorName}]]|?Located in=a|?Located in.Located in=b`)
 
   console.assert(results[0].printouts.a.length === results[0].printouts.b.length)
   const zipped = results[0].printouts.a.map((k, i) => [k, results[0].printouts.b[i]])
