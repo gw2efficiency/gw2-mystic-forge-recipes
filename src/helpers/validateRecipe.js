@@ -80,6 +80,27 @@ const SCHEMA = {
     achievement_id: {
       type: 'integer',
       minimum: 1
+    },
+
+    merchant: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string',
+          required: true
+        },
+        locations: {
+          type: 'array',
+          items: {
+            type: 'string',
+          },
+          minItems: 1,
+          required: true
+        },
+      }
+    },
+    merchant_data_hash: {
+      type: 'string'
     }
   },
   required: true,
@@ -97,7 +118,10 @@ const RECIPE_KEYS = [
 
   {name: 'disciplines'},
   {name: 'min_rating', optional: true},
-  {name: 'achievement_id', optional: true}
+  {name: 'achievement_id', optional: true},
+
+  {name: 'merchant', optional: true},
+  {name: 'merchant_data_hash', optional: true}
 ]
 
 const ALLOWED_KEYS = RECIPE_KEYS.map(x => x.name)

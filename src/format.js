@@ -1,20 +1,26 @@
 const fs = require('fs')
-
-console.log('Reading file')
-const file = fs.readFileSync('./recipes.json', 'utf-8')
+const fetch = require('node-fetch')
 const overwrites = require('./helpers/getOverwrites')
 
-console.log('Parsing file to JSON')
-let json = JSON.parse(file)
+async function main () {
+  console.log('Reading file')
+  const file = fs.readFileSync('./recipes.json', 'utf-8')
 
-console.log('Formatting recipes')
-json = json.map(formatRecipe).filter(Boolean)
+  console.log('Parsing file to JSON')
+  let json = JSON.parse(file)
 
-console.log('Writing to file')
-const jsonString = '[\n' + json.map(x => '  ' + JSON.stringify(x)).join(',\n') + '\n]\n'
-fs.writeFileSync('./recipes.json', jsonString, 'utf-8')
+  console.log('Formatting recipes')
+  json = await Promise.all(json.map(formatRecipe))
+  json = json.filter(Boolean)
 
-function formatRecipe (recipe) {
+  console.log('Writing to file')
+  const jsonString = '[\n' + json.map(x => '  ' + JSON.stringify(x)).join(',\n') + '\n]\n'
+  fs.writeFileSync('./recipes.json', jsonString, 'utf-8')
+}
+
+main()
+
+async function formatRecipe (recipe) {
   let result = {}
 
   const id = parseInt(recipe.id, 10)
@@ -42,12 +48,27 @@ function formatRecipe (recipe) {
 
   result.disciplines = recipe.disciplines
 
+  if (result.id) {
+    const apiRecipe = await getRecipe(result.id)
+
+    result.disciplines = apiRecipe.disciplines
+    result.min_rating = apiRecipe.min_rating
+  }
+
   if (recipe.min_rating) {
     result.min_rating = recipe.min_rating
   }
 
   if (recipe.achievement_id) {
     result.achievement_id = recipe.achievement_id
+  }
+
+  if (recipe.merchant) {
+    result.merchant = recipe.merchant
+  }
+
+  if (recipe.merchant_data_hash) {
+    result.merchant_data_hash = recipe.merchant_data_hash
   }
 
   return result
@@ -64,4 +85,9 @@ function formatIngredient (ingredient) {
   result.id = ingredient.id
 
   return result
+}
+
+async function getRecipe (id) {
+  const url = `https://api.guildwars2.com/v2/recipes/${id}`
+  return await fetch(url).then(x => x.json())
 }
