@@ -19,7 +19,7 @@ async function getVendorsForItem(nameOrId) {
   if (vendors.length === 0) {
     console.warn(`Found no id for '${name}'.`)
   }
-  console.log(`Processing item   ${name}`)
+  console.log(`Processing item ${name}`)
 
   return await Promise.all(vendors.map(getVendor))
 }
@@ -46,7 +46,7 @@ async function queryApi (query, offset = 0) {
   const parameters = {
     action: 'ask',
     format: 'json',
-    query: query +  `|limit=500|offset=${offset}`,
+    query: query + `|limit=500|offset=${offset}`,
   }
 
   const url = BASE_API_URL + querystring.stringify(parameters)
@@ -90,7 +90,7 @@ async function formatCost (cost) {
 
   const name = cost['Has item currency'].item[0]
 
-  const currency = getCurrency(name)
+  const {currency, multiplier} = getCurrency(name)
   if (currency) {
     result.type = 'Currency'
     result.id = currency.id
@@ -100,6 +100,9 @@ async function formatCost (cost) {
   }
 
   result.count = Number(cost['Has item value'].item[0])
+  if (multiplier) {
+    result.count = result.count * multiplier
+  }
 
   if (result.type === undefined || result.id === undefined || result.count === undefined) {
     console.error('Cost misses some property:', result)
@@ -109,12 +112,32 @@ async function formatCost (cost) {
 }
 
 function getCurrency(name) {
-  if (name === 'Ascended Shard of Glory') {
-    name = 'Ascended Shards of Glory'
-  } else if (name === 'Laurels') {
-    name = 'Laurel';
+  let multiplier = undefined
+  switch (name) {
+    case 'Ascended Shard of Glory':
+      name = 'Ascended Shards of Glory'
+      break
+    case 'Laurels':
+      name = 'Laurel'
+      break
+    case 'Gold':
+      name = 'Coin'
+      multiplier = 10000
+      break
+    case 'Silver':
+      name = 'Coin'
+      multiplier = 100
+      break
+    case 'Copper':
+      name = 'Coin'
+      break
+    default:
+      break
   }
-  return currencies.find((x) => x.name.toLowerCase() === name.toLowerCase())
+
+  const currency = currencies.find((x) => x.name.toLowerCase() === name.toLowerCase())
+
+  return {currency, multiplier}
 }
 
 async function getIdForName(name) {
