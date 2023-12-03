@@ -108,6 +108,10 @@ async function formatCost (cost) {
     console.error('Cost misses some property:', result)
   }
 
+  result.type = result.type || null
+  result.id = result.id || null
+  result.count = result.count || null
+
   return result
 }
 
