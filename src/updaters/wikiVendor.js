@@ -70,12 +70,12 @@ async function formatOfferedItem (item) {
   let result = {}
 
   result.type = 'Item'
-  result.id = item.printouts['Has game id'][0]
+  result.id = item.printouts['Has game id'][0] || await getIdForName(item.printouts['Sells item'][0].fulltext)
   result.count = item.printouts['Has item quantity'][0]
   result.price = await Promise.all(item.printouts['Has item cost'].map(formatCost))
 
   if (result.id === undefined || result.count === undefined || result.price === undefined) {
-    console.error(`Item '${item.printouts['Sells item'][0]?.fulltext || item.fulltext}' misses some property:`, result)
+    console.error(`Item '${item.printouts['Sells item'][0] ? item.printouts['Sells item'][0].fulltext : item.fulltext}' misses some property:`, result)
   }
 
   result.id = result.id || null
@@ -149,6 +149,12 @@ async function getIdForName(name) {
     return 19721
   }
 
+  // agony infusions have their "+" escaped (=removed) in the vendor property, but can only be queried for with the full name...
+  if (/^(\w+ )?[0-9]+ (Agony|Simple) Infusion$/.exec(name)) {
+    const index = /[0-9]+ (Agony|Simple) Infusion$/.exec(name).index
+    name = name.substring(0, index) + "+" + name.substring(index)
+  }
+
   const results = await queryApi(`[[Has context::Item]][[Has canonical name::${name}]]|?Has game id`)
 
   if (results.length === 0) {
@@ -173,5 +179,5 @@ async function getLocations(vendorName) {
   console.assert(results[0].printouts.a.length === results[0].printouts.b.length)
   const zipped = results[0].printouts.a.map((k, i) => [k, results[0].printouts.b[i]])
 
-  return zipped.map((x) => x.map((y) => y.fulltext).filter(Boolean).join(', '))
+  return zipped.map((x) => x.map((y) => y ? y.fulltext : null).filter(Boolean).join(', '))
 }
