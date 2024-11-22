@@ -191,6 +191,7 @@ class RecipeCard extends Component {
 
     let countIsDifferent = false
     let itemIsDifferent = false
+    let itemNameIsDifferent = false
     let isOutputDifferent = false
     let isInputDifferent = false
     let isDisciplineDifferent = false
@@ -199,6 +200,7 @@ class RecipeCard extends Component {
     if (diffRecipe) {
       countIsDifferent = diffRecipe.output_item_count !== recipe.output_item_count
       itemIsDifferent = diffRecipe.output_item_id !== recipe.output_item_id
+      itemNameIsDifferent = diffRecipe.name !== recipe.name
 
       const outputKeys = ['name', 'output_item_id', 'output_item_count']
       isOutputDifferent = JSON.stringify(pick(diffRecipe, outputKeys)) !== JSON.stringify(pick(recipe, outputKeys))
@@ -230,10 +232,10 @@ class RecipeCard extends Component {
             <span
               className={c([
                 'mr-1',
-                {'text-danger': itemIsDifferent}
+                {'text-danger': itemIsDifferent || itemNameIsDifferent}
               ])}
             >
-              {itemNames[recipe.output_item_id]}
+              {recipe.name}
             </span>
 
             <span className='text-muted'>({recipe.output_item_id})</span>
