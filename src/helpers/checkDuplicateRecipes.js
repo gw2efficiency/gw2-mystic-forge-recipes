@@ -2,6 +2,10 @@ function areRecipesDuplicate(firstRecipe, secondRecipe) {
   if (firstRecipe.output_item_id !== secondRecipe.output_item_id) {
     return false
   }
+
+  if (firstRecipe.output_item_count !== secondRecipe.output_item_count) {
+    return false
+  }
     
   const normalizeDisciplines = disciplines => disciplines.slice().sort()
     if (
