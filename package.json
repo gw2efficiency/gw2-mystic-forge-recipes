@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "sh start.sh",
-    "test": "node src/validate.js"
+    "test": "node src/validate.js",
+    "deleteduplicates": "node src/delete-duplicate-recipes.js"
   },
   "dependencies": {
     "@devoxa/flocky": "^1.3.1",
