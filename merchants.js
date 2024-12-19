@@ -7269,7 +7269,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000074236,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 2, count: 10003 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 70448,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 2, count: 10003 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000070448,
         count: 1,
         price: [
           { type: 'Currency', id: 2, count: 10003 }
@@ -7287,7 +7305,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000071338,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 2, count: 10003 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 78626,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 2, count: 10003 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000078626,
         count: 1,
         price: [
           { type: 'Currency', id: 2, count: 10003 }
@@ -7485,7 +7521,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000073706,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 74682,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000074682,
         count: 1,
         price: [
           { type: 'Currency', id: 1, count: 11432 }
@@ -7503,7 +7557,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000076844,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 78643,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000078643,
         count: 1,
         price: [
           { type: 'Currency', id: 1, count: 11432 }
@@ -7701,7 +7773,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000073885,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 71096,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000071096,
         count: 1,
         price: [
           { type: 'Currency', id: 1, count: 11432 }
@@ -7719,7 +7809,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000076624,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 78259,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 11432 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000078259,
         count: 1,
         price: [
           { type: 'Currency', id: 1, count: 11432 }
@@ -7737,7 +7845,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000072083,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 100000 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 76442,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 100000 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000076442,
         count: 1,
         price: [
           { type: 'Currency', id: 1, count: 100000 }
@@ -7755,7 +7881,25 @@ module.exports = [
       },
       {
         type: 'Item',
+        id: 1000000071173,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 100000 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
         id: 78344,
+        count: 1,
+        price: [
+          { type: 'Currency', id: 1, count: 100000 }
+        ],
+        ignore: true
+      },
+      {
+        type: 'Item',
+        id: 1000000078344,
         count: 1,
         price: [
           { type: 'Currency', id: 1, count: 100000 }
