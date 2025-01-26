@@ -1,5 +1,6 @@
 const fs = require('fs')
 const hashRecipes = require('./helpers/hashRecipe')
+const flatStringify = require('./helpers/flatStringify')
 
 async function run (name) {
   console.log(`Loading differences in recipes from ${name}`)
@@ -24,7 +25,7 @@ async function run (name) {
   console.log(`${updaterRecipes.length} new recipes`)
 
   console.log('Writing to temporary file (./tmp/differences.json)')
-  fs.writeFileSync(`./tmp/differences.json`, JSON.stringify(updaterRecipes, null, 2), 'utf-8')
+  fs.writeFileSync(`./tmp/differences.json`, flatStringify(updaterRecipes, null, 2), 'utf-8')
 }
 
 run(process.argv[2])

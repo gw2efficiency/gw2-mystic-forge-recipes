@@ -1,44 +1,37 @@
 const fs = require('fs')
-const fetch = require('node-fetch')
-const PromiseThrottle = require('promise-throttle')
 
-const reqThrottle = new PromiseThrottle({
-  requestsPerSecond: 600 / 60,
-  promiseImplementation: Promise
+console.log('Reading official recipe cache...')
+const OFFICIAL_RECIPE_CACHE = JSON.parse(fs.readFileSync('./official-recipe-cache.json', 'utf-8'))
+const OFFICIAL_RECIPE_MAP = {}
+OFFICIAL_RECIPE_CACHE.forEach((recipe) => {
+  OFFICIAL_RECIPE_MAP[recipe.output_item_id] = (OFFICIAL_RECIPE_MAP[recipe.output_item_id] || []).concat(recipe.id)
 })
 
-run()
+console.log('Reading recipes file...')
+const file = fs.readFileSync('./recipes.json', 'utf-8')
+let recipes = JSON.parse(file)
 
-async function run () {
-  console.log('Reading file')
-  const file = fs.readFileSync('./recipes.json', 'utf-8')
+console.log('Trying to resolve output ids to recipe ids on official API...')
+let results = []
 
-  console.log('Parsing file to JSON')
-  let json = JSON.parse(file)
+recipes.forEach((recipe) => {
+  if ([92687].includes(recipe.output_item_id)) {
+    return
+  }
 
-  console.log('Trying to resolve output ids to recipe ids on official API')
-  let results = []
+  const recipeIds = OFFICIAL_RECIPE_MAP[recipe.output_item_id]
 
-  const requests = json.map(element => (
-    reqThrottle.add(async () => {
-      const recipeIds = await getRecipeId(element.output_item_id)
-      process.stdout.write('.')
+  const ingredientIds = recipe.ingredients.map(x => x.id)
+  const isMFUpgradeRecipe = ingredientIds.includes(recipe.output_item_id)
 
-      if (recipeIds) {
-        results.push(`${element.name} (${element.output_item_id}) => ${recipeIds.join(', ')}`)
-      }
-    })
-  ))
+  const isAchievement = recipe.disciplines.includes('Achievement')
 
-  await Promise.all(requests)
+  if (recipeIds && !isMFUpgradeRecipe && !isAchievement) {
+    results.push(`${recipe.name} (${recipe.output_item_id}) => ${recipeIds.join(', ')}`)
+  }
+})
 
-  console.log()
-  console.log(results.join('\n'))
-}
+results = results.filter((x, i, self) => self.indexOf(x) === i)
 
-async function getRecipeId (itemId) {
-  const url = `https://api.guildwars2.com/v2/recipes/search?output=${itemId}`
-  const recipeIds = await fetch(url).then(x => x.json())
-
-  return recipeIds.length > 0 ? recipeIds : false
-}
+fs.writeFileSync('./official-id-overwrite.txt', results.join('\n') + '\n', 'utf-8')
+console.log('Written to ./official-id-overwrite.txt')

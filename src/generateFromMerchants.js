@@ -1,18 +1,30 @@
 const fs = require('fs')
 const flocky = require('@devoxa/flocky')
 const MERCHANTS = require('../merchants')
+const flatStringify = require('./helpers/flatStringify')
 
 console.log('Reading item cache...')
 const ITEM_CACHE = JSON.parse(fs.readFileSync('./item-cache.json', 'utf-8'))
 const ITEM_NAME_MAP = {}
 ITEM_CACHE.forEach((item) => (ITEM_NAME_MAP[item.id] = item.name))
 
+console.log('Reading official recipe cache...')
+const OFFICIAL_RECIPE_CACHE = JSON.parse(fs.readFileSync('./official-recipe-cache.json', 'utf-8'))
+const OFFICIAL_RECIPE_MAP = {}
+OFFICIAL_RECIPE_CACHE.forEach((recipe) => (OFFICIAL_RECIPE_MAP[recipe.output_item_id] = recipe.id))
+
 console.log(`Generating recipes out of ${MERCHANTS.length} merchants...`)
-const ignoredIds = [19675]
+const ignoredIds = JSON.parse(fs.readFileSync('./ignored-items.json', 'utf-8')).map(x => x.id)
 let recipes = []
 for (const merchant of MERCHANTS) {
   for (const purchaseOption of merchant.purchase_options) {
     if (purchaseOption.ignore || ignoredIds.includes(purchaseOption.id)) {
+      continue
+    }
+
+    if (OFFICIAL_RECIPE_MAP[purchaseOption.id]) {
+      // Ignore any merchant recipe that already have an official crafting recipe
+      // This prevents merchant items to show up for things like Bloodstone Brick / Gift of Blood
       continue
     }
 
@@ -47,8 +59,8 @@ for (const merchant of MERCHANTS) {
       ingredients,
       disciplines: ['Merchant'],
       merchant: {
-        name: merchant.name,
-        locations: merchant.locations,
+        name: merchant.display_name || merchant.name,
+        locations: merchant.display_locations || merchant.locations,
       },
     }
 
@@ -77,6 +89,6 @@ const newRecipes = recipes.filter((x) => !existingMerchantDataHashes.includes(x.
 recipesJson = recipesJson.concat(newRecipes)
 
 console.log('Writing output into recipes.json...')
-fs.writeFileSync('./recipes.json', JSON.stringify(recipesJson, null, 2), 'utf-8')
+fs.writeFileSync('./recipes.json', flatStringify(recipesJson, null, 2), 'utf-8')
 
 console.log('Done, next run `node src/format.js && node src/validate.js`')

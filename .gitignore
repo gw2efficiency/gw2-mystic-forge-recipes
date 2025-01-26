@@ -2,4 +2,6 @@
 node_modules
 tmp/*
 item-cache.json
+official-recipe-cache.json
+unofficial-item-cache.json
 .history/

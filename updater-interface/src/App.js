@@ -4,14 +4,18 @@ import {observer} from 'mobx-react'
 import c from 'classnames'
 import pick from 'lodash.pick'
 
+const apiHostname = process.env.REACT_APP_API_HOST
+
 @observer
 class App extends Component {
   @observable apiResponse = null
   @observable itemNames = {}
+  @observable currencyNames = {}
   @observable index = 0
 
   async componentDidMount () {
     await this.fetchItemNames()
+    await this.fetchCurrencyNames()
     await this.fetchFromAPI()
   }
 
@@ -37,8 +41,20 @@ class App extends Component {
     localStorage.setItem('itemNames', JSON.stringify(map))
   }
 
+  async fetchCurrencyNames () {
+    const response = await window.fetch('https://api.guildwars2.com/v2/currencies?ids=all&lang=en')
+    const currencies = await response.json()
+
+    let map = {}
+    currencies.forEach(currency => {
+      map[currency.id] = currency.name
+    })
+
+    this.currencyNames = map
+  }
+
   async fetchFromAPI () {
-    const response = await window.fetch(`http://gw2efficiency.local:3001/api/${this.index}`)
+    const response = await window.fetch(`http://${apiHostname}:3001/api/${this.index}`)
     this.apiResponse = await response.json()
   }
 
@@ -55,7 +71,7 @@ class App extends Component {
   async dismiss () {
     const body = {action: 'dismiss'}
 
-    await window.fetch(`http://gw2efficiency.local:3001/api/${this.index}`, {
+    await window.fetch(`http://${apiHostname}:3001/api/${this.index}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -69,7 +85,7 @@ class App extends Component {
   async add () {
     const body = {action: 'add'}
 
-    await window.fetch(`http://gw2efficiency.local:3001/api/${this.index}`, {
+    await window.fetch(`http://${apiHostname}:3001/api/${this.index}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -83,7 +99,7 @@ class App extends Component {
   async overwrite (existingIndex) {
     const body = {action: 'overwrite', existingIndex}
 
-    await window.fetch(`http://gw2efficiency.local:3001/api/${this.index}`, {
+    await window.fetch(`http://${apiHostname}:3001/api/${this.index}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -134,6 +150,7 @@ class App extends Component {
             <RecipeCard
               recipe={this.apiResponse.updater}
               itemNames={this.itemNames}
+              currencyNames={this.currencyNames}
               mode='new'
               dismiss={() => this.dismiss()}
               add={() => this.add()}
@@ -150,6 +167,7 @@ class App extends Component {
                 recipe={existing}
                 diffRecipe={this.apiResponse.updater}
                 itemNames={this.itemNames}
+                currencyNames={this.currencyNames}
                 mode='existing'
                 overwrite={(x) => this.overwrite(x)}
               />
@@ -166,12 +184,14 @@ class RecipeCard extends Component {
     const recipe = this.props.recipe
     const diffRecipe = this.props.diffRecipe
     const itemNames = this.props.itemNames
+    const currencyNames = this.props.currencyNames
     const mode = this.props.mode
     const isInvalid = recipe.ingredients.find(x => !x.id) || !recipe.output_item_id
     const isRecursive = !!recipe.ingredients.find(x => x.id === recipe.output_item_id)
 
     let countIsDifferent = false
     let itemIsDifferent = false
+    let itemNameIsDifferent = false
     let isOutputDifferent = false
     let isInputDifferent = false
     let isDisciplineDifferent = false
@@ -180,6 +200,7 @@ class RecipeCard extends Component {
     if (diffRecipe) {
       countIsDifferent = diffRecipe.output_item_count !== recipe.output_item_count
       itemIsDifferent = diffRecipe.output_item_id !== recipe.output_item_id
+      itemNameIsDifferent = diffRecipe.name !== recipe.name
 
       const outputKeys = ['name', 'output_item_id', 'output_item_count']
       isOutputDifferent = JSON.stringify(pick(diffRecipe, outputKeys)) !== JSON.stringify(pick(recipe, outputKeys))
@@ -211,10 +232,10 @@ class RecipeCard extends Component {
             <span
               className={c([
                 'mr-1',
-                {'text-danger': itemIsDifferent}
+                {'text-danger': itemIsDifferent || itemNameIsDifferent}
               ])}
             >
-              {itemNames[recipe.output_item_id]}
+              {recipe.name}
             </span>
 
             <span className='text-muted'>({recipe.output_item_id})</span>
@@ -251,10 +272,10 @@ class RecipeCard extends Component {
                     {'text-danger': itemIsDifferent}
                   ])}
                 >
-                  {itemNames[ingredient.id]}
+                  {ingredient.type === 'Item' ? itemNames[ingredient.id] : currencyNames[ingredient.id]}
                 </span>
 
-                <span className='text-muted'>({ingredient.id})</span>
+                <span className='text-muted'>({ingredient.type}, {ingredient.id})</span>
               </div>
             )
           })}

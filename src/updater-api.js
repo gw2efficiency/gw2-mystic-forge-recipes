@@ -2,6 +2,7 @@ const fs = require('fs')
 const express = require('express')
 const cors = require('cors')
 const hashRecipe = require('./helpers/hashRecipe')
+const flatStringify = require('./helpers/flatStringify')
 const app = express()
 
 app.use(cors())
@@ -44,8 +45,7 @@ app.post('/api/:index', (req, res) => {
     fs.writeFileSync('./tmp/differences.json', JSON.stringify(updater, null, 2), 'utf-8')
 
     existing.push(recipe)
-    const jsonString = '[\n' + existing.map(x => '  ' + JSON.stringify(x)).join(',\n') + '\n]'
-    fs.writeFileSync('./recipes.json', jsonString, 'utf-8')
+    fs.writeFileSync('./recipes.json', flatStringify(existing), 'utf-8')
 
     return res.send('ok')
   }
@@ -61,8 +61,7 @@ app.post('/api/:index', (req, res) => {
 
       return recipe
     })
-    const jsonString = '[\n' + existing.map(x => '  ' + JSON.stringify(x)).join(',\n') + '\n]'
-    fs.writeFileSync('./recipes.json', jsonString, 'utf-8')
+    fs.writeFileSync('./recipes.json', flatStringify(existing), 'utf-8')
 
     return res.send('ok')
   }

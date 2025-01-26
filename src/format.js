@@ -1,6 +1,7 @@
 const fs = require('fs')
 const fetch = require('node-fetch')
 const overwrites = require('./helpers/getOverwrites')
+const flatStringify = require('./helpers/flatStringify')
 
 async function main () {
   console.log('Reading file')
@@ -14,8 +15,7 @@ async function main () {
   json = json.filter(Boolean)
 
   console.log('Writing to file')
-  const jsonString = '[\n' + json.map(x => '  ' + JSON.stringify(x)).join(',\n') + '\n]\n'
-  fs.writeFileSync('./recipes.json', jsonString, 'utf-8')
+  fs.writeFileSync('./recipes.json', flatStringify(json), 'utf-8')
 }
 
 main()

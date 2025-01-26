@@ -1,4 +1,114 @@
 [
-  {"id": 43992, "name": "Black Lion Claim Ticket"},
-  {"id": 68063, "name": "Amalgamated Gemstone"}
+  {
+    "id": 68063,
+    "name": "Amalgamated Gemstone",
+    "reason": "Special handling"
+  },
+  {
+    "id": 19675,
+    "name": "Mystic Clover",
+    "reason": "Special handling"
+  },
+
+  {
+    "id": 43992,
+    "name": "Black Lion Claim Ticket",
+    "reason": "Merchant not useful"
+  },
+  {
+    "id": 46682,
+    "name": "Crystalline Ore",
+    "reason": "Merchant not useful"
+  },
+
+  {
+    "id": 101831,
+    "name": "Suffused Obsidian Heavy Greaves Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101809,
+    "name": "Suffused Obsidian Heavy Breastplate Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101763,
+    "name": "Suffused Obsidian Heavy Gauntlets Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101716,
+    "name": "Suffused Obsidian Heavy Helmet Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101825,
+    "name": "Suffused Obsidian Heavy Cuisses Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101884,
+    "name": "Suffused Obsidian Heavy Pauldrons Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101815,
+    "name": "Suffused Obsidian Medium Boots Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101899,
+    "name": "Suffused Obsidian Medium Jacket Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101783,
+    "name": "Suffused Obsidian Medium Gloves Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101879,
+    "name": "Suffused Obsidian Medium Mask Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101918,
+    "name": "Suffused Obsidian Medium Leggings Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101744,
+    "name": "Suffused Obsidian Medium Shoulders Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101892,
+    "name": "Suffused Obsidian Light Shoes Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101745,
+    "name": "Suffused Obsidian Light Regalia Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101733,
+    "name": "Suffused Obsidian Light Gloves Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101887,
+    "name": "Suffused Obsidian Light Crown Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101747,
+    "name": "Suffused Obsidian Light Pants Skin",
+    "reason": "#1686"
+  },
+  {
+    "id": 101929,
+    "name": "Suffused Obsidian Light Mantle Skin",
+    "reason": "#1686"
+  }
 ]
