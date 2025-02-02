@@ -71,6 +71,10 @@ async function formatRecipe (recipe) {
     result.merchant_data_hash = recipe.merchant_data_hash
   }
 
+  if (recipe.decoration_data_hash) {
+    result.decoration_data_hash = recipe.decoration_data_hash
+  }
+
   return result
 }
 

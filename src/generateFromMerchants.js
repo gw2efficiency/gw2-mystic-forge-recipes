@@ -39,11 +39,16 @@ for (const merchant of MERCHANTS) {
     }
 
     const priceItems = purchaseOption.price.filter((x) => x.type === 'Item')
+    let ignore = false
     for (const item of priceItems) {
       if (!ITEM_NAME_MAP[item.id]) {
         console.warn(`  > WARN: Ignoring purchase option, unsupported price item id "${item.id}"`)
-        continue
+        ignore = true
+        break
       }
+    }
+    if (ignore) {
+      continue
     }
 
     const ingredients = purchaseOption.price.map((priceItem) => ({

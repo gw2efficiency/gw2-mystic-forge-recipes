@@ -61,6 +61,7 @@ const SCHEMA = {
           'Scribe',
           'Tailor',
           'Weaponsmith',
+          'Handiworker',
 
           'Achievement',
           'Mystic Forge',
@@ -101,6 +102,9 @@ const SCHEMA = {
     },
     merchant_data_hash: {
       type: 'string'
+    },
+    decoration_data_hash: {
+      type: 'string'
     }
   },
   required: true,
@@ -121,7 +125,9 @@ const RECIPE_KEYS = [
   {name: 'achievement_id', optional: true},
 
   {name: 'merchant', optional: true},
-  {name: 'merchant_data_hash', optional: true}
+  {name: 'merchant_data_hash', optional: true},
+
+  {name: 'decoration_data_hash', optional: true}
 ]
 
 const ALLOWED_KEYS = RECIPE_KEYS.map(x => x.name)
@@ -186,7 +192,8 @@ function validateRecipe (recipe, line) {
     'Leatherworker',
     'Scribe',
     'Tailor',
-    'Weaponsmith'
+    'Weaponsmith',
+    'Handiworker'
   ]
   const isOfficialDiscipline = recipe.disciplines.filter(x => officialDisciplines.includes(x)).length > 0
 
