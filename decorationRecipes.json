@@ -217,6 +217,37 @@
     ]
   },
   {
+    "id": 14104,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 352,
+    "output_item_id": 2001000000352,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 225,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 24,
+        "type": "Item",
+        "id": 102306
+      },
+      {
+        "count": 6,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 19791
+      }
+    ]
+  },
+  {
     "id": 14106,
     "type": "Homestead Decoration",
     "output_decoration_id": 268,
@@ -275,6 +306,37 @@
         "count": 25,
         "type": "Item",
         "id": 102205
+      }
+    ]
+  },
+  {
+    "id": 14108,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 12,
+    "output_item_id": 2001000000012,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 10,
+        "type": "Item",
+        "id": 75270
       }
     ]
   },
@@ -1178,6 +1240,68 @@
     ]
   },
   {
+    "id": 14149,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 44,
+    "output_item_id": 2001000000044,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 70955
+      }
+    ]
+  },
+  {
+    "id": 14150,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 657,
+    "output_item_id": 2001000000657,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 20,
+        "type": "Item",
+        "id": 24341
+      }
+    ]
+  },
+  {
     "id": 14151,
     "type": "Homestead Decoration",
     "output_decoration_id": 700,
@@ -1267,6 +1391,37 @@
         "count": 33,
         "type": "Item",
         "id": 102306
+      }
+    ]
+  },
+  {
+    "id": 14156,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 16,
+    "output_item_id": 2001000000016,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 3,
+        "type": "Item",
+        "id": 72504
       }
     ]
   },
@@ -1772,6 +1927,37 @@
     ]
   },
   {
+    "id": 14177,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 353,
+    "output_item_id": 2001000000353,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 225,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 12,
+        "type": "Item",
+        "id": 24288
+      },
+      {
+        "count": 4,
+        "type": "Item",
+        "id": 97233
+      }
+    ]
+  },
+  {
     "id": 14178,
     "type": "Homestead Decoration",
     "output_decoration_id": 806,
@@ -2144,6 +2330,37 @@
     ]
   },
   {
+    "id": 14203,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 410,
+    "output_item_id": 2001000000410,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 20,
+        "type": "Item",
+        "id": 24356
+      }
+    ]
+  },
+  {
     "id": 14204,
     "type": "Homestead Decoration",
     "output_decoration_id": 799,
@@ -2414,6 +2631,37 @@
         "count": 32,
         "type": "Item",
         "id": 103049
+      }
+    ]
+  },
+  {
+    "id": 14217,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 58,
+    "output_item_id": 2001000000058,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 150,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 24,
+        "type": "Item",
+        "id": 102306
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 24312
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 45176
       }
     ]
   },
@@ -7280,6 +7528,37 @@
     ]
   },
   {
+    "id": 14453,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 10,
+    "output_item_id": 2001000000010,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 150,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 28,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 3,
+        "type": "Item",
+        "id": 77750
+      },
+      {
+        "count": 25,
+        "type": "Item",
+        "id": 96052
+      }
+    ]
+  },
+  {
     "id": 14454,
     "type": "Homestead Decoration",
     "output_decoration_id": 92,
@@ -7395,6 +7674,37 @@
         "count": 2,
         "type": "Currency",
         "id": 20
+      }
+    ]
+  },
+  {
+    "id": 14459,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 77,
+    "output_item_id": 2001000000077,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 225,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 27,
+        "type": "Item",
+        "id": 102306
+      },
+      {
+        "count": 10,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 2,
+        "type": "Item",
+        "id": 19791
       }
     ]
   },
@@ -10674,6 +10984,37 @@
     ]
   },
   {
+    "id": 14601,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 295,
+    "output_item_id": 2001000000295,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 10,
+        "type": "Item",
+        "id": 102255
+      }
+    ]
+  },
+  {
     "id": 14603,
     "type": "Homestead Decoration",
     "output_decoration_id": 124,
@@ -10887,6 +11228,37 @@
         "count": 1,
         "type": "Item",
         "id": 37897
+      }
+    ]
+  },
+  {
+    "id": 14611,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 182,
+    "output_item_id": 2001000000182,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 225,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 20,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 72504
       }
     ]
   },
@@ -11290,6 +11662,37 @@
         "count": 4,
         "type": "Item",
         "id": 77651
+      }
+    ]
+  },
+  {
+    "id": 14637,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 260,
+    "output_item_id": 2001000000260,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 3,
+        "type": "Item",
+        "id": 24503
       }
     ]
   },
@@ -12684,7 +13087,7 @@
       {
         "count": 3,
         "type": "Item",
-        "id": 77728
+        "id": 80542
       }
     ]
   },
@@ -13283,6 +13686,37 @@
     ]
   },
   {
+    "id": 14737,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 804,
+    "output_item_id": 2001000000804,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 20,
+        "type": "Item",
+        "id": 24350
+      }
+    ]
+  },
+  {
     "id": 14739,
     "type": "Homestead Decoration",
     "output_decoration_id": 308,
@@ -13465,6 +13899,37 @@
         "count": 1,
         "type": "Item",
         "id": 73034
+      }
+    ]
+  },
+  {
+    "id": 14749,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 54,
+    "output_item_id": 2001000000054,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 3,
+        "type": "Item",
+        "id": 24310
       }
     ]
   },
@@ -13961,6 +14426,37 @@
         "count": 28,
         "type": "Item",
         "id": 103049
+      }
+    ]
+  },
+  {
+    "id": 14772,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 98,
+    "output_item_id": 2001000000098,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 2,
+        "type": "Item",
+        "id": 96561
       }
     ]
   },
@@ -17467,6 +17963,192 @@
         "count": 5,
         "type": "Item",
         "id": 24318
+      }
+    ]
+  },
+  {
+    "id": 15012,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 866,
+    "output_item_id": 2001000000866,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      },
+      {
+        "count": 3,
+        "type": "Item",
+        "id": 24515
+      },
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      }
+    ]
+  },
+  {
+    "id": 15013,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 868,
+    "output_item_id": 2001000000868,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 300,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 50,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 24325
+      },
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 102205
+      }
+    ]
+  },
+  {
+    "id": 15016,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 870,
+    "output_item_id": 2001000000870,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 225,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 20,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 24323
+      }
+    ]
+  },
+  {
+    "id": 15019,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 865,
+    "output_item_id": 2001000000865,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 225,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 35,
+        "type": "Item",
+        "id": 103049
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 24515
+      },
+      {
+        "count": 20,
+        "type": "Item",
+        "id": 71692
+      }
+    ]
+  },
+  {
+    "id": 15020,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 867,
+    "output_item_id": 2001000000867,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 150,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 24,
+        "type": "Item",
+        "id": 102306
+      },
+      {
+        "count": 2,
+        "type": "Item",
+        "id": 71692
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 45176
+      }
+    ]
+  },
+  {
+    "id": 15021,
+    "type": "Homestead Decoration",
+    "output_decoration_id": 869,
+    "output_item_id": 2001000000869,
+    "output_item_count": 1,
+    "disciplines": [
+      "Handiworker"
+    ],
+    "min_rating": 150,
+    "flags": [
+      "LearnedFromItem"
+    ],
+    "ingredients": [
+      {
+        "count": 24,
+        "type": "Item",
+        "id": 102306
+      },
+      {
+        "count": 2,
+        "type": "Item",
+        "id": 75862
+      },
+      {
+        "count": 1,
+        "type": "Item",
+        "id": 45176
       }
     ]
   }
